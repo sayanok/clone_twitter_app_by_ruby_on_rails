@@ -7,9 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore all environment files (except templates).
-/.env*
-!/.env*.erb
+# 環境変数ファイルはリポジトリに含めない
+/.env
+/.env.example
+/.env.local
+/.env.*.local
 
 # Ignore all logfiles and tempfiles.
 /log/*
