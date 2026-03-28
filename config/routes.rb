@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tweets
   # root "posts#index"
 
   resources :users, only: [ :show ]
