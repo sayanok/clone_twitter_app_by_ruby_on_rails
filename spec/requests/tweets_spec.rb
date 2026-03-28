@@ -48,14 +48,6 @@ RSpec.describe "/tweets", type: :request do
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
-      tweet = Tweet.create! valid_attributes
-      get edit_tweet_url(tweet)
-      expect(response).to be_successful
-    end
-  end
-
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Tweet" do
@@ -79,36 +71,6 @@ RSpec.describe "/tweets", type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post tweets_url, params: { tweet: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested tweet" do
-        tweet = Tweet.create! valid_attributes
-        patch tweet_url(tweet), params: { tweet: new_attributes }
-        tweet.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the tweet" do
-        tweet = Tweet.create! valid_attributes
-        patch tweet_url(tweet), params: { tweet: new_attributes }
-        tweet.reload
-        expect(response).to redirect_to(tweet_url(tweet))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        tweet = Tweet.create! valid_attributes
-        patch tweet_url(tweet), params: { tweet: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

@@ -3,6 +3,9 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
+    # あとで直す
+    @current_user = User.first
+    @tweet = Tweet.new(user_id: @current_user&.id)
     @tweets = Tweet.all
   end
 
@@ -12,21 +15,19 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    # あとで直す
+    @current_user = User.first
+    @tweet = Tweet.new(user_id: @current_user&.id)
   end
 
   # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
 
-    respond_to do |format|
-      if @tweet.save
-        format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
-        format.json { render :show, status: :created, location: @tweet }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
+    if @tweet.save
+      redirect_to "/"
+    else
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -48,6 +49,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.fetch(:tweet, {})
+      params.require(:tweet).permit(:tweet_text, :user_id)
     end
 end

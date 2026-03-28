@@ -1,16 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Tweets" %>
-
-<h1>Tweets</h1>
+<%= render 'form', tweet: @tweet%>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>
     <p>
-      <%= link_to "Show this tweet", tweet %>
+      <%= link_to tweet.tweet_text, tweet %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New tweet", new_tweet_path %>
