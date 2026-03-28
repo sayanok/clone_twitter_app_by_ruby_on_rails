@@ -1,0 +1,5 @@
+ja:
+  date:
+    formats:
+      year_month: "%Y年%m月"
+      long: "%Y年%m月%d日"
