@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :tweets
-  # root "posts#index"
+  root "tweets#index"
 
   resources :users, only: [ :show ]
   get "/:account", to: "users#show", as: :account
+
+  resources :tweets, only: [ :index, :show, :new, :create, :destroy ]
+
 end
