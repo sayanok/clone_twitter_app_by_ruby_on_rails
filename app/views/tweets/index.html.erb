@@ -4,8 +4,5 @@
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>
-    <p>
-      <%= link_to tweet.tweet_text, tweet %>
-    </p>
   <% end %>
 </div>

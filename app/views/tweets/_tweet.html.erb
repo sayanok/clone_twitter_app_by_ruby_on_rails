@@ -1,2 +1,6 @@
 <div id="<%= dom_id tweet %>">
+  <%= tweet.user.user_name %>
+  <%= "@#{tweet.user.account}" %>
+  <br>
+  <%= link_to tweet.tweet_text, tweet %>
 </div>
