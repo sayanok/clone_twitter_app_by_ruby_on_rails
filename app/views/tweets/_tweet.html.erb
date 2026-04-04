@@ -1,11 +1,11 @@
 <div id="<%= dom_id tweet %>">
-  <%= link_to account_path(tweet.user) do %>
-    <%= tweet.user.user_name %>
+  <%= link_to account_path(tweet.user), class: "flex" do %>
+    <p class="font-bold">
+      <%= tweet.user.user_name %> 
+    </p>
     <%= "@#{tweet.user.account}" %>
   <% end %>
-  <br>
-  <%= link_to tweet_path(tweet) do %>
+  <%= link_to account_tweet_path(account: tweet.user.account, id: tweet.id) do %>
     <p><%= tweet.tweet_text %></p>
   <% end %>
-  <hr>
 </div>

@@ -1,8 +1,11 @@
 <% content_for :title, "Tweets" %>
-<%= render 'form', tweet: @tweet%>
+<div>
+  <%= render "form", tweet: @tweet %>
 
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-  <% end %>
+  <div id="tweets">
+    <% @tweets.each do |tweet| %>
+      <%= render tweet %>
+      <hr>
+    <% end %>
+  </div>
 </div>
