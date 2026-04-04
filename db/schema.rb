@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_22_070616) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_04_115115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tweets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "tweet_text", limit: 140
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "account", null: false
@@ -24,4 +31,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_22_070616) do
     t.datetime "updated_at", null: false
     t.index ["account"], name: "index_users_on_account", unique: true
   end
+
+  add_foreign_key "tweets", "users"
 end
