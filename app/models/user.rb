@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :tweets, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def to_param
     account
