@@ -1,0 +1,19 @@
+<%# locals: (tweet:) -%>
+
+<%= form_with(model: tweet) do |form| %>
+
+  <%= form.text_field :tweet_text, maxlength: 140 %>
+  <%= form.hidden_field :user_id %>
+
+  <% if form.object.errors.any? %>
+    <ul>
+      <% form.object.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

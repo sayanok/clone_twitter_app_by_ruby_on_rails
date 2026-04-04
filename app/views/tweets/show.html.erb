@@ -1,0 +1,6 @@
+<%= render @tweet %>
+
+<div>
+  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
+  <%= link_to "back", tweets_path %>
+</div>
