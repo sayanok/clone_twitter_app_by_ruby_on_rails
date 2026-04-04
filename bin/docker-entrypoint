@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+if [ -f Gemfile ]; then
+  bundle install
+fi
+
+if [ -f config/database.yml ] && [ -n "${DB_HOST:-}" ]; then
+  until pg_isready -h "$DB_HOST" -U "${POSTGRES_USER:-postgres}" -q 2>/dev/null; do
+    echo "PostgreSQL ($DB_HOST) の起動を待っています..."
+    sleep 1
+  done
+fi
+
+if [ "${1:-}" = "./bin/rails" ] && [ "${2:-}" = "server" ]; then
+  rm -f tmp/pids/server.pid
+  ./bin/rails db:prepare
+fi
+
+exec "$@"
