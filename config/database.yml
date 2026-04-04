@@ -19,7 +19,8 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD", "postgres") %>
+  # Avoid hardcoded default password to prevent secret scanners from flagging this file.
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
   host: <%= ENV.fetch("DB_HOST", "localhost") %>
 
 
